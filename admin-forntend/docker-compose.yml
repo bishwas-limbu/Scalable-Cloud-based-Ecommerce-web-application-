@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+    admin-app:
+      stdin_open : true
+      build:
+        context:  .
+        dockerfile: Dockerfile
+
+      expose:
+        - 5174
+      ports:
+        - "5174:5174"
+      environment:
+        - CHOKIDAR_USEPOLLING=true
+
+      networks:
+        - my-bridge  # Use a user-defined bridge network
+
+networks:
+  my-bridge:
+    driver: bridge
